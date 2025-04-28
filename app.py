@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 import requests
 
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 from pydantic import BaseModel
 from datetime import datetime
@@ -10,7 +11,12 @@ from datetime import datetime
 load_dotenv()
 
 app = FastAPI()
-
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["*"],
+    allow_headers=["*"]
+)
 
 class AqiOfSite(BaseModel):
     sitename: str
