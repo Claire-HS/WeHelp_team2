@@ -19,7 +19,7 @@ body {
   display: flex;
   background: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  z-index: 15;
+  z-index: 9999;
 }
 
 .nav__container {
@@ -268,9 +268,10 @@ body {
 }
 
 #stationDetail h2,
-#stationDetail p {
+#stationDetail>p {
   text-align: center;
   margin-top: 0;
+  margin-bottom: 8px;
 }
 
 #stationDetail h2 {
@@ -382,6 +383,10 @@ div>strong {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+}
+
+.content-container>.container-left {
+  height: 700px;
 }
 
 @media (max-width: 1200px) and (min-width: 769px) {
