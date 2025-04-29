@@ -1,3 +1,5 @@
+import { bindMapClickEvents, bindPolygonClickEvents } from '/static/map-interaction.js';
+
 const stationUrl = "http://3.27.111.145:8000/api/aqi"; // 測站API
 
 const mapLC = L.map("mapLC").setView([26.15, 119.94], 8.5); // 連江
@@ -57,6 +59,9 @@ function loadTopoJSON(url) {
       ).addTo(mapPH);
       geoLayers.push(phLayer);
       addMapTitle(mapPH, "澎湖縣");
+
+      // 綁定地圖縣市 Polygon 點擊事件
+      bindPolygonClickEvents(geoLayers);
     })
     .catch((error) => console.error("讀取或轉換 TopoJSON 錯誤:", error));
 }
@@ -89,6 +94,9 @@ function loadStation() {
       //   console.log(data);
       let stations = data.records;
       console.log(stations);
+
+      const markerLayer = L.layerGroup().addTo(mapTW);
+
       for (let i = 0; i < stations.length; i++) {
         let station = stations[i];
         let lat = parseFloat(station.latitude);
@@ -112,17 +120,27 @@ function loadStation() {
         }
 
         // 加入標記到對應的地圖
-        L.circleMarker([lat, lon], {
+        const marker = L.circleMarker([lat, lon], {
           radius: 8,
           fillColor: AQIcolor,
           color: "#ffffff",
           weight: 1,
           fillOpacity: 0.8,
+          customData: {
+            city: siteCounty,
+            siteName: station.sitename
+          }
         }).addTo(targetMap);
+
+        if (targetMap === mapTW) {
+          markerLayer.addLayer(marker);
+        }
         //   .bindPopup(
         //     `<strong>${siteName}</strong><br>AQI：${station.aqi}<br>狀態：${AQIstatus}`
         //   );
       }
+
+      bindMapClickEvents(markerLayer);
     })
     .catch((error) => console.error("載入觀測站失敗:", error));
 }
