@@ -1,110 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>台灣空氣品質即時資訊</title>
-  <!-- Leaflet CSS/JS removed -->
-  <link rel="stylesheet" href="station-page.css">
-</head>
-
-<body class="">
-  <!-- 導覽列 -->
-  <nav class="nav" role="navigation">
-    <div class="nav__container">
-      <h1 class="nav__logo">
-        <a href="/">台灣空氣品質</a>
-      </h1>
-    </div>
-  </nav>
-  <!-- 主要內容 -->
-  <main class="main">
-    <div class="map">這邊是地圖</div>
-    <div id="dataList" class="cards-container" style="position: relative;">
-      <!-- 篩選卡片 -->
-      <div class="selector-card">
-        <h4>請使用下方搜尋功能查詢</h4>
-        <div class="selector-group">
-          <div class="selector-row">
-            <label for="citySelector">縣市：</label>
-            <select id="citySelector">
-              <option value="">請選擇縣市</option>
-            </select>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Air 台灣空氣品質即時資訊</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="station-page.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="navbar">
+        <div class="nav-text"></div>
+        <div class="nav-list"></div>
+      </div>
+    </header>
+    <div class="main-content">
+      <div class="content-text"></div>
+      <div class="content-container">
+        <div class="container-left">
+          <div class="map-small">
+            <div id="mapLC"></div>
+            <div id="mapKM"></div>
+            <div id="mapPH"></div>
           </div>
-          <div class="selector-row">
-            <label for="siteSelector">測站：</label>
-            <select id="siteSelector" disabled>
-              <option value="">請選擇觀測站</option>
-            </select>
+          <div class="map-main" id="mapTW"></div>
+        </div>
+        <div class="container-right">
+          <div id="dataList" class="cards-container" style="position: relative;">
+            <!-- 篩選卡片 -->
+            <div class="selector-card">
+              <h4>請使用下方搜尋功能查詢</h4>
+              <div class="selector-group">
+                <div class="selector-row">
+                  <label for="citySelector">縣市：</label>
+                  <select id="citySelector">
+                    <option value="">請選擇縣市</option>
+                  </select>
+                </div>
+                <div class="selector-row">
+                  <label for="siteSelector">測站：</label>
+                  <select id="siteSelector" disabled>
+                    <option value="">請選擇觀測站</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+
+            <!-- 測站資料卡片 -->
+            <div class="station-card">
+              <div id="stationDetail">
+                <h2>縣市 / 測站名稱</h2>
+                <p style="font-size: 12px; color: #666;">更新時間：--</p>
+                <div class="aqi-circle aqi-good">
+                  <p class="aqi-label">空污指標AQI</p>
+                  <p class="aqi-value">--</p>
+                  <p class="aqi-status">良好</p>
+                </div>
+                <div class="detail-table">
+                  <div>
+                    <strong>PM2.5<br />細懸浮微粒(μg/m3)</strong>
+                    <div class="value-block">
+                      <span>移動平均：<span class="value">--</span></span>
+                      <span>小時濃度：<span class="value">--</span></span>
+                    </div>
+                  </div>
+                  <div>
+                    <strong>PM10<br />懸浮微粒(μg/m3)</strong>
+                    <div class="value-block">
+                      <span>移動平均：<span class="value">--</span></span>
+                      <span>小時濃度：<span class="value">--</span></span>
+                    </div>
+                  </div>
+                  <div>
+                    <strong>O₃<br />臭氧(ppb)</strong>
+                    <div class="value-block">
+                      <span>O₃移平均：<span class="value">--</span></span>
+                      <span>小時濃度：<span class="value">--</span></span>
+                    </div>
+                  </div>
+                  <div>
+                    <strong>CO<br />一氧化碳(ppm)</strong>
+                    <div class="value-block">
+                      <span>CO移平均：<span class="value">--</span></span>
+                      <span>小時濃度：<span class="value">--</span></span>
+                    </div>
+                  </div>
+                  <div>
+                    <strong>SO₂<br />二氧化硫(ppb)</strong>
+                    <div class="value-block">
+                      <span>小時濃度：<span class="value">--</span></span>
+                    </div>
+                  </div>
+                  <div>
+                    <strong>NO₂<br />二氧化氮(ppb)</strong>
+                    <div class="value-block">
+                      <span>小時濃度：<span class="value">--</span></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-
-
-      <!-- 測站資料卡片 -->
-      <div class="station-card">
-        <div id="stationDetail">
-          <h2>縣市 / 測站名稱</h2>
-          <p style="font-size: 12px; color: #666;">更新時間：--</p>
-          <div class="aqi-circle aqi-good">
-            <p class="aqi-label">空污指標AQI</p>
-            <p class="aqi-value">--</p>
-            <p class="aqi-status">良好</p>
-          </div>
-          <div class="detail-table">
-            <div>
-              <strong>PM2.5<br />細懸浮微粒(μg/m3)</strong>
-              <div class="value-block">
-                <span>移動平均：<span class="value">--</span></span>
-                <span>小時濃度：<span class="value">--</span></span>
-              </div>
-            </div>
-            <div>
-              <strong>PM10<br />懸浮微粒(μg/m3)</strong>
-              <div class="value-block">
-                <span>移動平均：<span class="value">--</span></span>
-                <span>小時濃度：<span class="value">--</span></span>
-              </div>
-            </div>
-            <div>
-              <strong>O₃<br />臭氧(ppb)</strong>
-              <div class="value-block">
-                <span>O₃移平均：<span class="value">--</span></span>
-                <span>小時濃度：<span class="value">--</span></span>
-              </div>
-            </div>
-            <div>
-              <strong>CO<br />一氧化碳(ppm)</strong>
-              <div class="value-block">
-                <span>CO移平均：<span class="value">--</span></span>
-                <span>小時濃度：<span class="value">--</span></span>
-              </div>
-            </div>
-            <div>
-              <strong>SO₂<br />二氧化硫(ppb)</strong>
-              <div class="value-block">
-                <span>小時濃度：<span class="value">--</span></span>
-              </div>
-            </div>
-            <div>
-              <strong>NO₂<br />二氧化氮(ppb)</strong>
-              <div class="value-block">
-                <span>小時濃度：<span class="value">--</span></span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
-  </main>
-
-  <!-- 頁尾 -->
-  <footer class="footer">
-    <p class="footer__text">台灣空氣品質網</p>
-  </footer>
-
-  <script src="station-data.js"></script>
-</body>
-
+    <footer class="footer">
+      <p class="footer__text">台灣空氣品質網</p>
+    </footer>
+    <script src="../TW_map.js"></script>
+    <script src="station-data.js"></script>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/topojson-client@3"></script>
+  </body>
 </html>
