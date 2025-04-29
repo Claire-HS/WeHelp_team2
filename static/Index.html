@@ -3,7 +3,34 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>The Air</title>
+    <title>The Air 台灣空氣品質即時資訊</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
   </head>
-  <body></body>
+  <body>
+    <header class="header">
+      <div class="navbar">
+        <div class="nav-text"></div>
+        <div class="nav-list"></div>
+      </div>
+    </header>
+    <div class="main-content">
+      <div class="content-text"></div>
+      <div class="content-container">
+        <div class="container-left">
+          <div class="map-small">
+            <div id="mapLC"></div>
+            <div id="mapKM"></div>
+            <div id="mapPH"></div>
+          </div>
+          <div class="map-main" id="mapTW"></div>
+        </div>
+        <div class="container-right"></div>
+      </div>
+    </div>
+    <footer class="footer"></footer>
+  </body>
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/topojson-client@3"></script>
+  <script src="../TW_map.js"></script>
 </html>

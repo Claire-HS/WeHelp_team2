@@ -1,0 +1,52 @@
+* {
+  margin: 0;
+  padding: 0;
+  /* box-sizing: border-box; */
+}
+
+body {
+  /* padding-top: 54px; */
+  font-family: "Noto Sans TC", sans-serif;
+}
+
+.content-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container-left {
+  width: 800px;
+  height: 800px;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 10px;
+}
+
+.map-small {
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.legendInfo {
+  line-height: 1.5;
+  font: 14px "Noto Sans TC", sans-serif;
+}
+
+#mapLC,
+#mapKM,
+#mapPH,
+#mapTW {
+  background-color: #ffffff; /* 設置為白色背景 */
+  border: 1px solid #f0f0f0;
+  border-radius: 5px;
+}
+
+.map-name {
+  font-size: 16px;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 6px 10px;
+  border-radius: 6px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
