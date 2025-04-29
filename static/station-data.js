@@ -192,3 +192,5 @@ function getAqiClass(aqi) {
 
 // Fetch data and initialize page on load
 fetchData();
+
+export { allData, renderDataCards, renderSitesAndData };
