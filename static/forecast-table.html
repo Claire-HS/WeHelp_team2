@@ -1,34 +1,34 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <title>The Air 台灣空氣品質即時資訊</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="forecast-table.css" />
+    <link rel="stylesheet" href="station-page.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <title>空氣品質預報表格</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="forecast-table.css" />
-  <link rel="stylesheet" href="station-page.css">
-</head>
-
-<body>
-  <!-- 導覽列 -->
-  <header class="header">
-    <div class="navbar">
-      <div class="nav-text"><a href="./">The Air</a></div>
-      <div class="nav-list">
-        <div class="list-item"><a href="forecast-table.html">未來預報</a></div>
+  <body>
+    <!-- 導覽列 -->
+    <header class="header">
+      <div class="navbar">
+        <div class="nav-text"><a href="./">The Air</a></div>
+        <div class="nav-list">
+          <div class="list-item">
+            <a href="forecast-table.html">未來預報</a>
+          </div>
+        </div>
       </div>
+    </header>
+    <div class="wrapper">
+      <h2>全國各空品區空氣品質預報</h2>
+      <div id="publishTime" class="time"></div>
+      <div id="forecastTableContainer"></div>
     </div>
-  </header>
-  <div class="wrapper">
-    <h2>全國各空品區空氣品質預報</h2>
-    <div id="publishTime" class="time"></div>
-    <div id="forecastTableContainer"></div>
-  </div>
-  <!-- 頁尾 -->
-  <footer class="footer">
-    <p class="footer-text">COPYRIGHT @ 2025 The Air</p>
-  </footer>
-  <script src="forecast-table.js" defer></script>
-</body>
-
+    <!-- 頁尾 -->
+    <footer class="footer">
+      <p class="footer-text">COPYRIGHT @ 2025 The Air</p>
+    </footer>
+    <script src="forecast-table.js" defer></script>
+  </body>
 </html>
