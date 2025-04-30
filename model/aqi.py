@@ -1,6 +1,7 @@
 import os
 from dotenv import load_dotenv
 import requests
+from datetime import datetime, date
 
 load_dotenv()
 API_KEY = os.getenv("API_KEY")
@@ -32,6 +33,14 @@ class AQIForecast:
         publishtime = [item["publishtime"] for item in data]
         latest_publishtime = max(publishtime)
         index = [time == latest_publishtime for time in publishtime]
+        
         # 篩選出最新發布的資訊
         selected_data = [item for item, boolean in zip(data, index) if boolean]
-        return selected_data
+        
+        # 排除今天的預測
+        forecastdate = [item["forecastdate"] for item in selected_data]
+        today = date.strftime(date.today(), "%Y-%m-%d")
+        today_index = [date != today for date in forecastdate]
+        result = [item for item, boolean in zip(selected_data, today_index) if boolean]
+
+        return result
