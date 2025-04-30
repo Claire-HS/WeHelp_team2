@@ -60,7 +60,8 @@ body {
 }
 
 .main-content {
-  width: 1200px;
+  max-width: 1200px;
+  width: 100%;
   height: 100%;
   margin: 40px auto 40px auto;
   padding: 0px 10px;
@@ -122,7 +123,7 @@ body {
 #mapTW {
   background-color: #ffffff; /* 設置為白色背景 */
   border: 1px solid #f0f0f0;
-  border-radius: 5px;
+  border-radius: 8px;
   width: 100%;
   height: 100%;
   min-height: 200px;
@@ -180,10 +181,12 @@ body {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 1.5rem;
+  justify-items: center;
+  align-items: center;
 }
 
 .grid-card {
-  width: 350px;
+  width: 340px;
   height: 150px;
   perspective: 1000px;
 }
@@ -242,4 +245,28 @@ body {
   color: white;
   font-size: 18px;
   font-weight: 700;
+}
+
+@media (max-width: 1200px) and (min-width: 769px) {
+  .infoCards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .content-monitor {
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .infoCards {
+    grid-template-columns: 1fr;
+  }
+
+  .content-monitor {
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+  }
 }

@@ -380,9 +380,9 @@ div > strong {
   flex-direction: column;
 } */
 
-.content-container > .container-left {
+/* .content-container > .container-left {
   height: 700px;
-}
+} */
 
 @media (max-width: 1200px) and (min-width: 769px) {
   .cards-container {
@@ -396,7 +396,7 @@ div > strong {
 }
 
 @media (max-width: 768px) {
-  .main {
+  /* .main {
     flex-direction: column;
     align-items: center;
   }
@@ -405,7 +405,7 @@ div > strong {
     width: 100%;
     height: 300px;
     background-color: #333;
-  }
+  } */
 
   .cards-container {
     width: 100%;
