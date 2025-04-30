@@ -1,15 +1,20 @@
-import { bindMapClickEvents, bindPolygonClickEvents } from '/static/map-interaction.js';
+import {
+  bindMapClickEvents,
+  bindPolygonClickEvents,
+} from "./map-interaction.js";
+
+// import { allData } from "./station-data.js";
+// console.log(allData);
 
 const stationUrl = "http://3.27.111.145:8000/api/aqi"; // 測站API
-
 const mapLC = L.map("mapLC").setView([26.15, 119.94], 8.5); // 連江
 const mapKM = L.map("mapKM").setView([24.44, 118.32], 8.5); // 金門
 const mapPH = L.map("mapPH").setView([23.56, 119.57], 8.5); // 澎湖
-const mapTW = L.map("mapTW").setView([23.5, 121], 8); // 台灣本島
+const mapTW = L.map("mapTW").setView([23.6, 121], 8); // 台灣本島
 const geoLayers = [];
 
 // 讀取並處理 TopoJSON
-const url = "/static/TW_region.json";
+const url = "./TW_region.json";
 function loadTopoJSON(url) {
   fetch(url)
     .then((response) => response.json())
@@ -26,11 +31,33 @@ function loadTopoJSON(url) {
         (feature) => !islands.includes(feature.properties.COUNTYNAME)
       );
 
+      // 限制地圖可移動範圍
+      const twBounds = L.latLngBounds(
+        L.latLng(21.8, 120), // 南西角
+        L.latLng(25.4, 122.1) // 北東角
+      );
+
+      const kmBounds = L.latLngBounds(
+        L.latLng(24.4, 118.2),
+        L.latLng(24.52, 118.5)
+      );
+
+      const lcBounds = L.latLngBounds(
+        L.latLng(25.9, 119.9),
+        L.latLng(26.33, 120.04)
+      );
+
+      const phBounds = L.latLngBounds(
+        L.latLng(23.1, 119.2),
+        L.latLng(23.8, 119.95)
+      );
+
       // 繪製地圖
       const twLayer = L.geoJSON(taiwanMainlandGeoJSON, {
         style: style,
         onEachFeature: onEachFeature,
       }).addTo(mapTW);
+      mapTW.setMaxBounds(twBounds);
       geoLayers.push(twLayer);
 
       const lcLayer = L.geoJSON(
@@ -39,6 +66,7 @@ function loadTopoJSON(url) {
         ),
         { style: style, onEachFeature: onEachFeature }
       ).addTo(mapLC);
+      mapLC.setMaxBounds(lcBounds);
       geoLayers.push(lcLayer);
       addMapTitle(mapLC, "連江縣");
 
@@ -48,6 +76,7 @@ function loadTopoJSON(url) {
         ),
         { style: style, onEachFeature: onEachFeature }
       ).addTo(mapKM);
+      mapKM.setMaxBounds(kmBounds);
       geoLayers.push(kmLayer);
       addMapTitle(mapKM, "金門縣");
 
@@ -57,6 +86,7 @@ function loadTopoJSON(url) {
         ),
         { style: style, onEachFeature: onEachFeature }
       ).addTo(mapPH);
+      mapPH.setMaxBounds(phBounds);
       geoLayers.push(phLayer);
       addMapTitle(mapPH, "澎湖縣");
 
@@ -88,12 +118,22 @@ function getAQIColor(AQIstatus) {
 
 // 取得觀測站資訊
 function loadStation() {
+  const skeletonTW = document.getElementById("skeletonTW");
+  const skeletonKM = document.getElementById("skeletonKM");
+  const skeletonLC = document.getElementById("skeletonLC");
+  const skeletonPH = document.getElementById("skeletonPH");
+
+  skeletonTW.style.display = "block";
+  skeletonLC.style.display = "block";
+  skeletonPH.style.display = "block";
+  skeletonKM.style.display = "block";
+
   fetch(stationUrl)
     .then((response) => response.json())
     .then((data) => {
       //   console.log(data);
       let stations = data.records;
-      console.log(stations);
+      //   console.log(stations);
 
       const markerLayer = L.layerGroup().addTo(mapTW);
 
@@ -101,11 +141,10 @@ function loadStation() {
         let station = stations[i];
         let lat = parseFloat(station.latitude);
         let lon = parseFloat(station.longitude);
-        // let siteName = station.sitename;
+        let siteName = station.sitename;
         let siteCounty = station.county;
         let AQIstatus = station.status;
         let AQIcolor = getAQIColor(AQIstatus);
-        // console.log(siteName, siteCounty, lat, lon);
 
         let targetMap;
 
@@ -128,21 +167,28 @@ function loadStation() {
           fillOpacity: 0.8,
           customData: {
             city: siteCounty,
-            siteName: station.sitename
-          }
+            siteName: siteName,
+          },
         }).addTo(targetMap);
 
         if (targetMap === mapTW) {
           markerLayer.addLayer(marker);
         }
-        //   .bindPopup(
-        //     `<strong>${siteName}</strong><br>AQI：${station.aqi}<br>狀態：${AQIstatus}`
-        //   );
       }
 
       bindMapClickEvents(markerLayer);
     })
-    .catch((error) => console.error("載入觀測站失敗:", error));
+    .catch((error) => console.error("載入觀測站失敗:", error))
+    .finally(() => {
+      skeletonTW.style.display = "none";
+      skeletonLC.style.display = "none";
+      skeletonPH.style.display = "none";
+      skeletonKM.style.display = "none";
+      mapTW.invalidateSize();
+      mapPH.invalidateSize();
+      mapKM.invalidateSize();
+      mapLC.invalidateSize();
+    });
 }
 
 // 設定地圖樣式
@@ -242,4 +288,5 @@ legend.addTo(mapTW);
 
 // 載入TopoJSON
 loadTopoJSON(url);
+// 載入觀測站
 loadStation();

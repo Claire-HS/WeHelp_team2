@@ -1,17 +1,17 @@
-*,
+/* *,
 *::before,
 *::after {
   box-sizing: border-box;
-}
+} */
 
-body {
+/* body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
   overflow-x: hidden;
-}
+} */
 
-/* === 導覽列 === */
+/* === 導覽列 ===
 .nav {
   position: fixed;
   inset: 0;
@@ -40,10 +40,10 @@ body {
   color: #2976d6;
   text-decoration: none;
   white-space: nowrap;
-}
+} */
 
 /* === 頁尾 === */
-.footer {
+/* .footer {
   min-height: 108px;
   background: #4577b5;
   color: white;
@@ -51,25 +51,22 @@ body {
   line-height: 108px;
   font-weight: 700;
   margin-top: auto;
-}
+} */
 
 /* === 讓頁尾固定在底部 === */
-.station-page {
+/* .station-page {
   background-color: #f5f8fa;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-}
+} */
 
-
-
-
-#toolbar {
+/* #toolbar {
   display: flex;
   align-items: center;
   padding: 10px;
   background-color: #f0f0f0;
-}
+} */
 
 #citySelector,
 #siteSelector,
@@ -223,7 +220,7 @@ body {
   font-size: 16px;
 }
 
-.main {
+/* .main {
   width: 100%;
   max-width: 1200px;
   margin: 54px auto 0;
@@ -231,15 +228,14 @@ body {
   display: flex;
   gap: 30px;
   justify-content: center;
-  flex-wrap: nowrap
-    /* overflow-x: hidden; */
-}
+  flex-wrap: nowrap;
+  overflow-x: hidden;
+} */
 
-
-.map {
+/* .map {
   width: 680px;
   background-color: #333;
-}
+} */
 
 .selector-card {
   width: 100%;
@@ -254,7 +250,7 @@ body {
   box-sizing: border-box;
 }
 
-.selector-card>h4 {
+.selector-card > h4 {
   margin: 0;
   font-size: 14px;
 }
@@ -268,7 +264,7 @@ body {
 }
 
 #stationDetail h2,
-#stationDetail>p {
+#stationDetail > p {
   text-align: center;
   margin-top: 0;
   margin-bottom: 8px;
@@ -305,7 +301,7 @@ body {
   margin-left: 4px;
 }
 
-div>strong {
+div > strong {
   font-size: 14px;
 }
 
@@ -377,20 +373,18 @@ div>strong {
   border-color: #7e0023;
 }
 
-
-.station-page {
+/* .station-page {
   background-color: #f5f8fa;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-}
+} */
 
-.content-container>.container-left {
+.content-container > .container-left {
   height: 700px;
 }
 
 @media (max-width: 1200px) and (min-width: 769px) {
-
   .cards-container {
     width: auto;
     min-width: 260px;
@@ -400,7 +394,6 @@ div>strong {
     align-items: center;
   }
 }
-
 
 @media (max-width: 768px) {
   .main {
