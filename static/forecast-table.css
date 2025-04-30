@@ -1,0 +1,167 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: "Arial", sans-serif;
+  background: #f8f8f8;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.wrapper {
+  max-width: 800px;
+  width: 80%;
+  margin: auto;
+  /* padding: 1rem 0; */
+}
+
+.wrapper>h2 {
+  margin-top: 40px;
+}
+
+h2 {
+  color: #2976d6;
+  padding: 0.5rem 0;
+  font-size: 1.4rem;
+}
+
+.time {
+  margin: 1rem 0;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.table-style {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+  background: white;
+  margin: 1rem auto 0;
+}
+
+.table-style th,
+.table-style td {
+  border: 1px solid #ffffff;
+  text-align: center;
+  padding: 0.3rem;
+}
+
+.table-style th {
+  background: #e6f2ff;
+}
+
+.aqi-good {
+  background: #009865;
+  color: white;
+}
+
+.aqi-moderate {
+  background: #FFFB26;
+}
+
+.aqi-unhealthy-sensitive {
+  background: #FF9835;
+  color: white;
+}
+
+.aqi-unhealthy {
+  background: #CA0034;
+  color: white;
+}
+
+.aqi-very-unhealthy {
+  background: #670087;
+  color: white;
+}
+
+.aqi-hazardous {
+  background: #7e0123;
+  color: white;
+}
+
+/* === Footer === */
+.footer {
+  width: 100%;
+  min-height: 70px;
+  background: #357dd5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: auto;
+}
+
+
+@media (max-width: 768px) {
+  .table-style {
+    display: none;
+  }
+
+  .card-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .forecast-card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+  }
+
+  .forecast-card h2 {
+    margin-top: 0;
+    font-size: 1.1rem;
+  }
+
+  .forecast-card .aqi-cell {
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+    font-weight: bold;
+  }
+}
+
+.forecast-description {
+  /* padding: 1rem; */
+  margin: 3rem 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+body.loading::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-color: rgba(255, 255, 255);
+  z-index: 9998;
+}
+
+body.loading::after {
+  content: "";
+  width: 48px;
+  height: 48px;
+  border: 6px solid #ccc;
+  border-top-color: #2976d6;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+}
+
+@keyframes spin {
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
