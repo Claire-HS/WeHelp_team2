@@ -95,8 +95,8 @@ function renderDataCards(data) {
 
   const record = data[0];
   const aqi = parseInt(record.aqi);
-  const status = getAqiStatus(aqi);
-  const aqiClass = getAqiClass(aqi);
+  const status = getAqiStatus(record.status);
+  const aqiClass = getAqiClass(record.status);
 
   stationDetail.style.display = "block";
 
@@ -158,31 +158,37 @@ function renderDataCards(data) {
    Utility Functions
 =========================== */
 
-function getAqiColor(aqi) {
-  if (aqi <= 50) return "#00e400"; // 綠色
-  if (aqi <= 100) return "#ffdd00"; // 黃色
-  if (aqi <= 150) return "#ff7e00"; // 橘色
-  if (aqi <= 200) return "#ff0000"; // 紅色
-  if (aqi <= 300) return "#8f3f97"; // 紫色
-  return "#7e0023"; // 褐紅色
+export function getAqiColor(aqi) {
+  if (aqi <= 50) return "#009865";
+  if (aqi <= 100) return "#FFFB26";
+  if (aqi <= 150) return "#FF9835";
+  if (aqi <= 200) return "#CA0034";
+  if (aqi <= 300) return "#670087";
+  return "#7E0123";
 }
 
-function getAqiStatus(aqi) {
-  if (aqi <= 50) return "良好";
-  if (aqi <= 100) return "普通";
-  if (aqi <= 150) return "對敏感族群不良";
-  if (aqi <= 200) return "不健康";
-  if (aqi <= 300) return "非常不健康";
-  return "危害";
+export function getAqiStatus(status) {
+  const map = {
+    "良好": "良好",
+    "普通": "普通",
+    "對敏感族群不健康": "對敏感族群不良",
+    "對所有族群不健康": "不健康",
+    "非常不健康": "非常不健康",
+    "危害": "危害"
+  };
+  return map[status] || "未提供";
 }
 
-function getAqiClass(aqi) {
-  if (aqi <= 50) return "aqi-good";
-  if (aqi <= 100) return "aqi-moderate";
-  if (aqi <= 150) return "aqi-unhealthy-sensitive";
-  if (aqi <= 200) return "aqi-unhealthy";
-  if (aqi <= 300) return "aqi-very-unhealthy";
-  return "aqi-hazardous";
+function getAqiClass(status) {
+  const map = {
+    "良好": "aqi-good",
+    "普通": "aqi-moderate",
+    "對敏感族群不健康": "aqi-unhealthy-sensitive",
+    "對所有族群不健康": "aqi-unhealthy",
+    "非常不健康": "aqi-very-unhealthy",
+    "危害": "aqi-hazardous"
+  };
+  return map[status] || "aqi-unknown";
 }
 
 

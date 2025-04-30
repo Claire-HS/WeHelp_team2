@@ -76,7 +76,7 @@
   font-size: 16px;
   width: 96px;
   border: 1px solid #949393;
-  border-radius: 8px;
+  border-radius: 5px;
 }
 
 .cards-container {
@@ -98,13 +98,8 @@
   align-items: center;
   justify-content: flex-start;
   cursor: pointer;
-  transition: transform 0.2s;
   overflow: hidden;
   word-break: break-word;
-}
-
-.station-card:hover {
-  transform: translateY(-5px);
 }
 
 .station-card h2 {
@@ -118,7 +113,7 @@
 .aqi-circle {
   width: 120px;
   height: 120px;
-  border: 8px solid green;
+  border: 8px solid rgb(167, 166, 166);
   border-radius: 50%;
   display: flex;
   flex-direction: column;
@@ -239,7 +234,6 @@
 
 .selector-card {
   width: 100%;
-  width: 330px;
   background-color: #ffffff;
   border-radius: 8px;
   padding: 10px 0;
@@ -256,7 +250,7 @@
 }
 
 #stationDetail {
-  width: 100%;
+  /* width: 100%; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -290,7 +284,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 100%;
+  /* max-width: 100%; */
   font-size: 14px;
 }
 
@@ -324,7 +318,7 @@ div > strong {
 @keyframes smoothPulse {
   0% {
     transform: scale(1);
-    box-shadow: 0 0 0 0 var(--pulse-color, rgba(0, 228, 0, 0.8));
+    box-shadow: 0 0 0 0 var(--pulse-color, rgba(189, 188, 188, 0.8));
   }
 
   50% {
@@ -340,32 +334,32 @@ div > strong {
 
 .aqi-circle {
   animation: smoothPulse 4s infinite ease-in-out;
-  --pulse-color: rgba(0, 228, 0, 0.8);
+  --pulse-color: rgba(167, 168, 168, 0.8);
 }
 
 .aqi-good {
-  --pulse-color: rgba(0, 228, 0, 0.8);
-  border-color: #00e400;
+  --pulse-color: rgba(0, 152, 101, 0.8);
+  border-color: #009865;
 }
 
 .aqi-moderate {
-  --pulse-color: rgba(255, 234, 0, 0.8);
-  border-color: #ffdd00;
+  --pulse-color: rgba(255, 251, 38, 0.8);
+  border-color: #fffb26;
 }
 
 .aqi-unhealthy-sensitive {
-  --pulse-color: rgba(255, 126, 0, 0.8);
-  border-color: #ff7e00;
+  --pulse-color: rgba(255, 152, 53, 0.8);
+  border-color: #ff9835;
 }
 
 .aqi-unhealthy {
-  --pulse-color: rgba(255, 0, 0, 0.8);
-  border-color: #ff0000;
+  --pulse-color: rgba(202, 0, 52, 0.8);
+  border-color: #ca0034;
 }
 
-.aqi-very-unhealthy {
-  --pulse-color: rgba(143, 63, 151, 0.8);
-  border-color: #8f3f97;
+.aqi-hazardous {
+  --pulse-color: rgba(126, 1, 35, 0.8);
+  border-color: #7e0123;
 }
 
 .aqi-hazardous {
@@ -383,6 +377,18 @@ div > strong {
 /* .content-container > .container-left {
   height: 700px;
 } */
+.content-container > .container-left {
+  height: 716px;
+  gap: 20px;
+  border-radius: 8px;
+}
+
+#mapLC,
+#mapKM,
+#mapPH,
+#mapTW {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
 
 @media (max-width: 1200px) and (min-width: 769px) {
   .cards-container {
@@ -392,6 +398,13 @@ div > strong {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+  }
+
+  .content-container > .container-left {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    width: 500px;
   }
 }
 
