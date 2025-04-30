@@ -3,10 +3,8 @@ import {
   bindPolygonClickEvents,
 } from "./map-interaction.js";
 
-// import { allData } from "./station-data.js";
-// console.log(allData);
+import { fetchData } from "./station-data.js";
 
-const stationUrl = "http://3.27.111.145:8000/api/aqi"; // 測站API
 const mapLC = L.map("mapLC").setView([26.15, 119.94], 8.5); // 連江
 const mapKM = L.map("mapKM").setView([24.44, 118.32], 8.5); // 金門
 const mapPH = L.map("mapPH").setView([23.56, 119.57], 8.5); // 澎湖
@@ -128,13 +126,8 @@ function loadStation() {
   skeletonPH.style.display = "block";
   skeletonKM.style.display = "block";
 
-  fetch(stationUrl)
-    .then((response) => response.json())
-    .then((data) => {
-      //   console.log(data);
-      let stations = data.records;
-      //   console.log(stations);
-
+  fetchData()
+    .then((stations) => {
       const markerLayer = L.layerGroup().addTo(mapTW);
 
       for (let i = 0; i < stations.length; i++) {
@@ -288,5 +281,6 @@ legend.addTo(mapTW);
 
 // 載入TopoJSON
 loadTopoJSON(url);
+
 // 載入觀測站
 loadStation();

@@ -13,7 +13,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 18px;
+  gap: 17.5px; /* 控制總高為700px */
 }
 
 /* 測站卡片 */
@@ -246,26 +246,6 @@ div > strong {
   border-color: #7e0023;
 }
 
-/* .station-page {
-  background-color: #f5f8fa;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-} */
-
-/* .content-container > .container-left {
-  height: 716px;
-  gap: 20px;
-  border-radius: 8px;
-} */
-
-/* #mapLC,
-#mapKM,
-#mapPH,
-#mapTW {
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-} */
-
 @media (max-width: 1200px) and (min-width: 769px) {
   .cards-container {
     width: auto;
@@ -275,17 +255,9 @@ div > strong {
     justify-content: flex-start;
     align-items: center;
   }
-
-  /* .content-container > .container-left {
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-    width: 500px;
-  } */
 }
 
 @media (max-width: 768px) {
-
   .cards-container {
     width: 100%;
     align-items: center;

@@ -115,7 +115,7 @@ body {
 
 .legendInfo {
   line-height: 1.5;
-  font: 14px "Noto Sans TC", sans-serif;
+  font: 14px Arial, sans-serif;
 }
 
 #mapLC,
@@ -123,7 +123,6 @@ body {
 #mapPH,
 #mapTW {
   background-color: #ffffff;
-  /* 設置為白色背景 */
   border: 1px solid #f0f0f0;
   border-radius: 8px;
   width: 100%;

@@ -1,25 +1,31 @@
-import { allData, renderDataCards, renderSitesAndData } from './station-data.js';
+import {
+  fetchData,
+  renderDataCards,
+  renderSitesAndData,
+} from "./station-data.js";
+
 // 綁定 marker 點擊
 function bindMapClickEvents(markersLayerGroup) {
   if (!markersLayerGroup) {
-    console.error('bindMapClickEvents 參數錯誤');
+    console.error("bindMapClickEvents 參數錯誤");
     return;
   }
 
   markersLayerGroup.eachLayer(function (marker) {
-    marker.on('click', function (e) {
+    marker.on("click", function (e) {
       const markerData = e.target.options.customData;
       if (markerData) {
         handleMarkerClick(markerData.city, markerData.siteName);
       } else {
-        console.warn('點擊的 marker 沒有 customData');
+        console.warn("點擊的 marker 沒有 customData");
       }
     });
   });
 }
 
 // 處理 marker 點擊邏輯
-function handleMarkerClick(city, siteName) {
+async function handleMarkerClick(city, siteName) {
+  const allData = await fetchData();
   const citySelector = document.getElementById("citySelector");
   const siteSelector = document.getElementById("siteSelector");
   const selectorCard = document.querySelector(".selector-card");
@@ -30,10 +36,10 @@ function handleMarkerClick(city, siteName) {
   }
 
   setTimeout(() => {
-    const filteredSites = allData.filter(record => record.county === city);
+    const filteredSites = allData.filter((record) => record.county === city);
     if (filteredSites.length > 0 && siteSelector) {
-      siteSelector.innerHTML = '';
-      filteredSites.forEach(record => {
+      siteSelector.innerHTML = "";
+      filteredSites.forEach((record) => {
         const option = document.createElement("option");
         option.value = record.sitename;
         option.textContent = record.sitename;
@@ -42,7 +48,9 @@ function handleMarkerClick(city, siteName) {
 
       siteSelector.value = siteName;
 
-      const selectedRecord = filteredSites.find(record => record.sitename === siteName);
+      const selectedRecord = filteredSites.find(
+        (record) => record.sitename === siteName
+      );
       if (selectedRecord) {
         renderDataCards([selectedRecord]);
       }
@@ -52,9 +60,9 @@ function handleMarkerClick(city, siteName) {
 
 // 綁定地圖縣市區域 Polygon 點擊事件
 function bindPolygonClickEvents(geoLayers) {
-  geoLayers.forEach(layerGroup => {
-    layerGroup.eachLayer(layer => {
-      layer.on('click', function (e) {
+  geoLayers.forEach((layerGroup) => {
+    layerGroup.eachLayer((layer) => {
+      layer.on("click", function (e) {
         const countyName = e.target.feature.properties.COUNTYNAME;
         handlePolygonClick(countyName);
       });
@@ -62,7 +70,8 @@ function bindPolygonClickEvents(geoLayers) {
   });
 }
 
-function handlePolygonClick(city) {
+async function handlePolygonClick(city) {
+  const allData = await fetchData();
   const citySelector = document.getElementById("citySelector");
   const siteSelector = document.getElementById("siteSelector");
   const selectorCard = document.querySelector(".selector-card");
@@ -73,10 +82,10 @@ function handlePolygonClick(city) {
   }
 
   setTimeout(() => {
-    const filteredSites = allData.filter(record => record.county === city);
+    const filteredSites = allData.filter((record) => record.county === city);
     if (filteredSites.length > 0 && siteSelector) {
-      siteSelector.innerHTML = '';
-      filteredSites.forEach(record => {
+      siteSelector.innerHTML = "";
+      filteredSites.forEach((record) => {
         const option = document.createElement("option");
         option.value = record.sitename;
         option.textContent = record.sitename;
