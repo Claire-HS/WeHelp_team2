@@ -2,9 +2,7 @@ const apiUrl = "http://3.27.111.145:8000/api/aqi";
 
 let allData = [];
 
-/* ===========================
-   API Handling
-=========================== */
+/* === API Handling === */
 
 function getLatestData(records) {
   const latestDataMap = {};
@@ -80,9 +78,7 @@ function renderSitesAndData(selectedCity) {
   }
 }
 
-/* ===========================
-   DOM Rendering
-=========================== */
+/* === DOM Rendering === */
 
 function renderDataCards(data) {
   const stationDetail = document.getElementById("stationDetail");
@@ -154,9 +150,7 @@ function renderDataCards(data) {
 }
 
 
-/* ===========================
-   Utility Functions
-=========================== */
+/* === Utility Functions === */
 
 export function getAqiColor(aqi) {
   if (aqi <= 50) return "#009865";
@@ -192,9 +186,7 @@ function getAqiClass(status) {
 }
 
 
-/* ===========================
-   Initialization
-=========================== */
+/* === Initialization === */
 
 // Fetch data and initialize page on load
 fetchData();
