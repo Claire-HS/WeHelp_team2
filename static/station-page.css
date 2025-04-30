@@ -244,7 +244,7 @@
   box-sizing: border-box;
 }
 
-.selector-card > h4 {
+.selector-card>h4 {
   margin: 0;
   font-size: 14px;
 }
@@ -258,7 +258,7 @@
 }
 
 #stationDetail h2,
-#stationDetail > p {
+#stationDetail>p {
   text-align: center;
   margin-top: 0;
   margin-bottom: 8px;
@@ -295,7 +295,7 @@
   margin-left: 4px;
 }
 
-div > strong {
+div>strong {
   font-size: 14px;
 }
 
@@ -344,17 +344,17 @@ div > strong {
 
 .aqi-moderate {
   --pulse-color: rgba(255, 251, 38, 0.8);
-  border-color: #fffb26;
+  border-color: #FFFB26;
 }
 
 .aqi-unhealthy-sensitive {
   --pulse-color: rgba(255, 152, 53, 0.8);
-  border-color: #ff9835;
+  border-color: #FF9835;
 }
 
 .aqi-unhealthy {
   --pulse-color: rgba(202, 0, 52, 0.8);
-  border-color: #ca0034;
+  border-color: #CA0034;
 }
 
 .aqi-hazardous {
@@ -374,10 +374,7 @@ div > strong {
   flex-direction: column;
 } */
 
-/* .content-container > .container-left {
-  height: 700px;
-} */
-.content-container > .container-left {
+.content-container>.container-left {
   height: 716px;
   gap: 20px;
   border-radius: 8px;
@@ -400,12 +397,13 @@ div > strong {
     align-items: center;
   }
 
-  .content-container > .container-left {
+  .content-container>.container-left {
     display: flex;
     flex-direction: column;
     gap: 18px;
     width: 500px;
   }
+
 }
 
 @media (max-width: 768px) {
