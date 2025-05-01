@@ -12,7 +12,7 @@ const mapTW = L.map("mapTW").setView([23.6, 121], 8); // 台灣本島
 const geoLayers = [];
 
 // 讀取並處理 TopoJSON
-const url = "./TW_region.json";
+const url = "/static/TW_region.json";
 function loadTopoJSON(url) {
   fetch(url)
     .then((response) => response.json())
