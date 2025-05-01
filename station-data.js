@@ -1,4 +1,5 @@
-const apiUrl = "http://3.27.111.145:8000/api/aqi";
+const apiUrl =
+  "https://5wqz99uez1.execute-api.ap-southeast-2.amazonaws.com/v1/api/aqi";
 
 /* === API Handling === */
 
